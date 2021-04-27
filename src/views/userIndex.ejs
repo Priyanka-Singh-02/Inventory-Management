@@ -1,0 +1,89 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>user panel ||</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="/css/userIndex.css">
+  
+<style>
+
+.panelButton
+{
+  background-image: linear-gradient(-134deg,rgb(255, 167, 204),rgb(10, 6, 37), rgba(18, 17, 19, 0.5));
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+ letter-spacing: 3px;
+  height: 300px;
+  font-size: large;
+  border: none;
+  border-radius: 20px;
+ 
+}
+.panelButton:hover
+{
+  background-image:linear-gradient(134deg,black,white, rgba(255, 77, 77, 0.5));
+  color:black ;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: x-large;
+}
+.card
+{
+  margin: 20px;
+  background-color: black;
+}
+</style>
+
+</head>
+  <body>
+    <h3 class="text-center mt-5" style="color: white; letter-spacing: 3px; background-color: black;">E-COMMERCE</h3>
+    
+
+      <div class="container w-50">
+        <div class="card-columns d-flex justify-content-center mt-5">
+          <div class="card ">
+            <div class="card-block">
+             
+    
+      <button
+      type="submit"
+      class="btn btn-primary btn-block panelButton"
+      onclick="window.location='/api/v1/auth/signUp'"
+    >
+      SIGNUP
+    </button>
+            
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-block">
+            
+              <button
+              type="submit"
+              class="btn btn-info btn-block panelButton"
+              onclick="window.location='/api/v1/auth/login'"
+            >
+              LOGIN
+            </button>
+          
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    
+  
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title>user dashboard ||</title>
+    <%- include('headers'); -%>
+  </head>
+  <h3 class="text-center mt-5">User logged in successfully</h3>
+
+<div class="col">
+  <p class="text-center mt-5" style="color: cornflowerblue;font-size:30px;font-weight: bold;">Profile</p>
+<table class="table table-striped">
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">gender</th>
+        <th scope="col">country</th>
+        <th scope="col">state</th>
+        <th scope="col">city</th>
+        <th scope="col">profile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td><%=name%></td>
+        <td><%=email%></td>
+        <td><%=gender%></td>
+        <td><%=country%></td>
+        <td><%=city%></td>
+        <td><%=state%></td>
+        <td><img src="http://localhost:8010/uploads/<%=profile%>" alt="profile image"/></td>
+      </tr>
+    
+      </tbody>
+</table> 
+</div> 
+
+<div class="col">
+          <p class="text-center mt-5" style="color: cornflowerblue;font-size:30px;font-weight: bold;">Products</p>
+  
+<table class="table table-striped">
+  <tbody>
+    <thead class="thead-dark" >
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">name</th>
+    <th scope="col">price</th>
+    <th scope="col">quantity</th>
+    <th scope="col">added_date</th>
+    <th scope="col">product_image</th>
+
+  </tr>
+  </thead>
+  <tbody>
+    <% for(var i=0; i<products.length; i++) { %>
+    <tr>
+        <td>
+        <%= i+1 %>
+        </td>
+            <td>
+                <%= products[i].name%>
+            </td>
+            <td>
+                <%= products[i].price%>
+            </td>
+            <td>
+                <%= products[i].quantity%>
+                </td>
+                <td>
+                    <%= products[i].createdAt%>
+                </td>
+             
+    <td>
+      <img src="" alt="profile image"/></td>
+    
+    
+  </tr>
+  <% } %>
+  </tbody>
+  </table>
+</div>
+
+  <p><button type="submit" class="btn btn-info btn-block"  onclick="window.location='/api/v1/auth/updateData'">UPDATE PROFILE</button></p>
+  <p>
+    <button type="submit" class="btn btn-info btn-block" onclick="window.location='/api/v1/auth/updatePass'">CHANGE PASSWORD</button>
+  </p>
+  <p><button type="submit" class="btn btn-info btn-block">RESET PASSWORD</button></p>
+  
+</html>

@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <title>admin dashboard ||</title>
+    <%- include('headers'); -%>
+  </head>
+  <h3 class="text-center mt-5" id="success"><%=success%></h3>
+  
+  <div class="col">
+    <p class="text-center mt-5" style="color:cadetblue;font-size:30px;font-weight: bold;">Users</p>
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+          <th scope="col">email</th>
+          <th scope="col">gender</th>
+          <th scope="col">country</th>
+          <th scope="col">state</th>
+          <th scope="col">city</th>
+          <th scope="col">profile image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i<users.length; i++) { %>
+        <tr>
+            <td>
+            <%= i+1 %>
+            </td>
+                <td>
+                    <%= users[i].name%>
+                </td>
+                <td>
+                    <%= users[i].email%>
+                </td>
+                <td>
+                    <%= users[i].gender%>
+                    </td>
+                    <td>
+                        <%= users[i].country%>
+                    </td>
+                    <td>
+                        <%= users[i].state%>
+                    </td>
+                    <td>
+                        <%= users[i].city%>
+                        </td>
+        <td>
+          <img src="http://localhost:8010/uploads/<%=users[i].profilePhoto%>" alt="profile image"/></td>
+        
+  
+
+        </tr>
+        <% } %>
+        </tbody>
+  </table> 
+  </div> 
+  
+  <div class="col">
+    <p class="text-center mt-5" style="color:cadetblue;font-size:30px;font-weight: bold;">Products</p>
+
+<table class="table table-striped">
+<tbody>
+  <thead class="thead-dark" >
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">name</th>
+  <th scope="col">price</th>
+  <th scope="col">quantity</th>
+  <th scope="col">added_date</th>
+  <th scope="col">product_image</th>
+<th scope="col">update</th>
+  <th scope="col">delete</th>
+</tr>
+</thead>
+<tbody>
+  <% for(var i=0; i<products.length; i++) { %>
+  <tr>
+      <td>
+      <%= i+1 %>
+      </td>
+          <td>
+              <%= products[i].name%>
+          </td>
+          <td>
+              <%= products[i].price%>
+          </td>
+          <td>
+              <%= products[i].quantity%>
+              </td>
+              <td>
+                  <%= products[i].createdAt%>
+              </td>
+           
+  <td>
+    <img src="" alt="profile image"/></td>
+    
+    <td><button style ="color:white;background-color:crimson" onclick="window.location='/api/v1/admin/updateProduct/<%=products[i].slug%>'">update</button></td>
+    <td><button style="color:white;background-color: black"  onclick="window.location='/api/v1/admin/deleteProduct/<%=products[i].slug%>'">delete</button></td>
+  
+</tr>
+<% } %>
+</tbody>
+</table>
+
+
+</div>
+  <div>
+    <% if (pages > 0) { %>
+      <ul class="pagination text-center">
+          <% if (current == 1) { %>
+              <li class="disabled"><a>First</a></li>
+          <% } else { %>
+              <li><a href="/api/v1/admin/adminDashboard/1">First</a></li>
+          <% } %>
+          <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+          <% if (i !== 1) { %>
+              <li class="disabled"><a>...</a></li>
+          <% } %>
+          <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <% if (i == current) { %>
+                  <li class="active"><a><%= i %></a></li>
+              <% } else { %>
+                  <li><a href="/api/v1/admin/adminDashboard/<%= i %>"><%= i %></a></li>
+              <% } %>
+              <% if (i == Number(current) + 4 && i < pages) { %>
+                  <li class="disabled"><a>...</a></li>
+              <% } %>
+          <% } %>
+          <% if (current == pages) { %>
+              <li class="disabled"><a>Last</a></li>
+          <% } else { %>
+              <li><a href="/api/v1/admin/adminDashboard/<%= pages %>">Last</a></li>
+          <% } %>
+      </ul>
+  <% } %>
+  </div>
+  
+  <p>
+    <button type="submit" class="btn btn-danger btn-block" onclick="window.location='/api/v1/admin/addProduct'">ADD PRODUCTS</button>
+  </p>
+</html>
+
+<script>
+
+setTimeout(function() {
+    $('#success').fadeOut();
+}, 1000);
+</script>

@@ -1,0 +1,334 @@
+<html>
+  <head>
+    <title>user sign-up ||</title>
+    <%- include('userHeader'); -%>
+  </head>
+
+  <body>
+    <div class="global-container">
+      <div class="card login-form">
+        <div class="card-body">
+          <h3 class="card-title text-center">SIGN UP</h3>
+          <div class="card-text">
+            <!--
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+            <form
+              method="POST"
+              action="http://localhost:8010/api/v1/auth/signUpData"
+              enctype="multipart/form-data"
+            >
+              <!-- to error: add class "has-danger" -->
+              <span style="color: red; font-size: large"> <%=mandatory%> </span>
+              <span style="color: red; font-size: large">
+                <%=alreadyExist%>
+              </span>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Full Name:</label
+                ><span style="color: red; font-size: smaller">*</span>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  name="name"
+                  value=""
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Email:</label
+                ><span style="color: red; font-size: smaller">*</span>
+
+                <input
+                  type="email"
+                  class="form-control form-control-sm"
+                  id="exampleInputPassword1"
+                  name="email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password:</label
+                ><span style="color: red; font-size: smaller">*</span>
+
+                <input
+                  type="password"
+                  class="form-control form-control-sm"
+                  id="exampleInputPassword1"
+                  name="password"
+                />
+              </div>
+
+              <div class="form-check">
+                <label for="gender">Gender:</label
+                ><span style="color: red; font-size: smaller">*</span>
+                <br />
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="exampleRadios1"
+                  value="Male"
+                  checked
+                />
+                <label class="form-check-label" for="exampleRadios1">
+                  Male
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="exampleRadios2"
+                  value="Female"
+                />
+                <label class="form-check-label" for="exampleRadios2">
+                  Female
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="exampleRadios3"
+                  value="Other"
+                />
+                <label class="form-check-label" for="exampleRadios3">
+                  Other
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Country:</label
+                ><span style="color: red; font-size: smaller">*</span>
+                <select id="country" name="country">
+                  <option hidden selected></option>
+
+                  <option>India</option>
+                  <option>Japan</option>
+                  <option>Germany</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">State:</label
+                ><span style="color: red; font-size: smaller">*</span>
+                <select id="states" oninput="State()"></select>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="selectedState"
+                  class="form-control selectedValue"
+                  placeholder="selected state"
+                  name="state"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">City:</label
+                ><span style="color: red; font-size: smaller">*</span>
+                <select id="cities" onchange="City()"></select>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="selectedCity"
+                  class="form-control selectedValue"
+                  placeholder="selected city"
+                  name="city"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Profile photo:</label>
+                <input
+                  type="file"
+                  class="form-control-file"
+                  id="profile"
+                  name="profile"
+                />
+              </div>
+
+              <p>
+                <button type="submit" class="btn btn-danger btn-block">
+                  Sign up
+                </button>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+  /*
+   -------------------------------------------------------
+   syntax 
+   MAIN.createRelatedSelector(
+      from   -> the filtering element           
+      to     -> the element for filtered options
+      obj    -> An object containing the options per
+                option of the filtering (from) element
+      [sort] -> optional sorting method for sorting
+                of the complete or filtered options list
+   --------------------------------------------------------
+  */
+
+  //create the interdepent selectors
+  function initSelectors() {
+    // next 2 statements should generate error message, see console
+    MAIN.createRelatedSelector();
+    MAIN.createRelatedSelector(document.querySelector("#country"));
+
+    //countries
+    MAIN.createRelatedSelector(
+      document.querySelector("#country"), // from select element
+      document.querySelector("#states"), // to select element
+      {
+        // values object
+        India: ["", "telangana", "karnataka"],
+        Japan: ["", "tohku", "chubu"],
+        Germany: ["", "hessen", "bavaria"],
+      },
+      function (a, b) {
+        return a > b ? 1 : a < b ? -1 : 0;
+      } // sort method
+    );
+
+    //
+    MAIN.createRelatedSelector(
+      document.querySelector("#states"), // from select element
+      document.querySelector("#cities"), // to select element
+      {
+        // values object
+        telangana: ["telagana1", "telangana2"],
+        karnataka: ["karnataka1", "karnataka2"],
+        tohku: ["tohku1", "tohku2"],
+        chubu: ["chubu1", "chubu2"],
+        hessen: ["hessen1", "hessen2"],
+        bavaria: ["bavaria1", "bavaria2"],
+      },
+      function (a, b) {
+        return a > b ? 1 : a < b ? -1 : 0;
+      } // sort method
+    );
+  }
+
+  //create MAIN namespace
+  (function (ns) {
+    // don't pollute the global namespace
+
+    function create(from, to, obj, srt) {
+      if (!from) {
+        throw CreationError("create: parameter selector [from] missing");
+      }
+      if (!to) {
+        throw CreationError("create: parameter related selector [to] missing");
+      }
+      if (!obj) {
+        throw CreationError(
+          "create: related filter definition object [obj] missing"
+        );
+      }
+
+      //retrieve all options from obj and add it
+      obj.all = (function (o) {
+        var a = [];
+        for (var l in o) {
+          a = /array/i.test(o[l].constructor) ? a.concat(o[l]) : a;
+        }
+        return a.sort(srt);
+      })(obj);
+      // initialize and populate to-selector with all
+      populator.call(from, null, to, obj, srt);
+
+      // assign handler
+      from.onchange = populator;
+
+      function initStatics(fn, obj) {
+        for (var l in obj) {
+          if (obj.hasOwnProperty(l)) {
+            fn[l] = obj[l];
+          }
+        }
+        fn.initialized = true;
+      }
+
+      function populator(e, relatedto, obj, srt) {
+        // set pseudo statics
+        var self = populator;
+        if (!self.initialized) {
+          initStatics(self, {
+            optselects: obj,
+            optselectsall: obj.all,
+            relatedTo: relatedto,
+            sorter: srt || false,
+          });
+        }
+
+        if (!self.relatedTo) {
+          throw "not related to a selector";
+        }
+        // populate to-selector from filter/all
+        var optsfilter =
+            this.selectedIndex < 1
+              ? self.optselectsall
+              : self.optselects[
+                  this.options[this.selectedIndex].firstChild.nodeValue
+                ],
+          cselect = self.relatedTo,
+          opts = cselect.options;
+        if (self.sorter) optsfilter.sort(self.sorter);
+        opts.length = 0;
+        for (var i = 0; i < optsfilter.length; i += 1) {
+          opts[i] = new Option(optsfilter[i], i);
+        }
+      }
+    }
+
+    // custom Error
+    function CreationError(mssg) {
+      return { name: "CreationError", message: mssg };
+    }
+
+    // return the create method with some error handling
+    window[ns] = {
+      createRelatedSelector: function (from, to, obj, srt) {
+        try {
+          if (arguments.length < 1) {
+            throw CreationError("no parameters");
+          }
+          create.call(null, from, to, obj, srt);
+        } catch (e) {
+          console.log(
+            "createRelatedSelector ->",
+            e.name,
+            "\n" + e.message + "\ncheck parameters"
+          );
+        }
+      },
+    };
+  })("MAIN");
+  //initialize
+  initSelectors();
+
+  function State() {
+    //Getting Value
+
+    var selState = document.getElementById("states");
+    var selStateValue = selState.options[selState.selectedIndex].text;
+
+    //Setting Value
+    document.getElementById("selectedState").value = selStateValue;
+  }
+
+  function City() {
+    var selObj = document.getElementById("cities");
+    var selValue = selObj.options[selObj.selectedIndex].text;
+
+    //Setting Value
+    document.getElementById("selectedCity").value = selValue;
+  }
+</script>

@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>update product ||</title>
+    <%- include('userHeader'); -%>
+  </head>
+
+  <body>
+    <div class="global-container">
+      <div class="card login-form">
+        <div class="card-body">
+          <h3 class="card-title text-center">Update product</h3>
+          <div class="card-text">
+            <span
+              style="
+                color: rgb(216, 19, 94);
+                font-size: larger;
+                font-weight: bolder;
+              "
+              >Current Product Name : <%=currentProduct.name%></span
+            >
+            <form
+              method="post"
+              action="http://localhost:8010/api/v1/admin/updatedProduct/<%=currentProduct.slug%>"
+            >
+              <div class="form-group">
+                <label for="exampleInputEmail1">Product Name:</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  name="name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Price:</label>
+
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="exampleInputPassword1"
+                  name="price"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Quantity:</label>
+
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="exampleInputPassword1"
+                  name="quantity"
+                />
+              </div>
+              <div class="form-group">
+                <label for="current-date">Created at:</label><br />
+                <input type="text" id="date" name="createdAt" /> <br />
+              </div>
+
+              <br /><br /><br />
+              <div class="form-group">
+                <label for="exampleFormControlFile1"
+                  >Product Images:(you can choose multiple)</label
+                >
+                <input
+                  type="file"
+                  class="form-control-file"
+                  id="productImg"
+                  name="productImages"
+                />
+              </div>
+              <div>
+                <button class="productSave">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  $("#date").datepicker().datepicker("option", "defaultDate", "null");
+  $("#date").datepicker().datepicker("option", "showOn", "button");
+  $("#date").datepicker().datepicker("option", "buttonImageOnly", "true");
+  $("#date")
+    .datepicker()
+    .datepicker(
+      "option",
+      "buttonImage",
+      "http://localhost:8010/uploads/datepicker.png"
+    );
+
+  $("#date").datepicker("option", "dateFormat", "DD, d MM, yy");
+  $("#date").datepicker("option", "changeMonth", true);
+  $("#date").datepicker("option", "changeYear", true);
+  $("#date").datepicker("option", "minDate", new Date());
+  $("#date").datepicker("option", "maxDate");
+</script>
