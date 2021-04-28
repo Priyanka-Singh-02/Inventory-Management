@@ -64,7 +64,7 @@ const login = async (req, res) => {
     // console.log("ismatch", isMatch);
     if (isMatch) {
     
-      res.redirect("http://localhost:8010/api/v1/admin/adminDashboard/:1");
+      res.redirect("http://localhost:8010/api/v1/admin/adminDashboard");
     } else {
       res.render("index.ejs", {
       
@@ -93,29 +93,36 @@ const login = async (req, res) => {
 //admin Dashboard */
 const adminDashboard = async (req, res) => {
   try {
-
-    var perPage = 2;
-    var page = req.params.page || 1;
-    const userdata = await userModel.find({});
-   productModel.find({}) .skip((perPage * page) - perPage)
-    .limit(perPage) .exec(function(err,products) {
-      productModel.count().exec(function(err, count) {
-          if (err) return next(err);
-          else
-          {
+    const userdata = await userModel.find({}).count();
+    const productdata = await productModel.find({}).count();
     res.render("dashbord.ejs", {
-      users: userdata,
-      success:req.flash('info'),
-      products: products,
-      current: page,
-      pages: Math.ceil(count / perPage)
-    });}})});
+     totalUsers: userdata,
+     totalProducts:productdata
+    });;
   } catch (error) {
     res.render("adminError.ejs");
     console.log("unexpected error occured");
     console.log(error);
   }
 };
+
+
+const viewUsers = async  (req, res) => {
+  try {
+    const userdata = await userModel.find({});
+    // const productdata = await productModel.find({}).count();
+    res.render("viewUsers.ejs", {
+     users: userdata,
+    //  totalProducts:productdata
+    });;
+  } catch (error) {
+    res.render("adminError.ejs");
+    console.log("unexpected error occured");
+    console.log(error);
+  }
+};
+
+
 
 const addProduct = async (req, res) => {
   try {
@@ -128,4 +135,4 @@ const addProduct = async (req, res) => {
     console.log(error);
   }
 };
-module.exports = { homePage, login, adminDashboard, addProduct };
+module.exports = { homePage, login, adminDashboard, addProduct,viewUsers };

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>admin dashboard ||</title>
+	<title>show users ||</title>
    
    
 	<!--Bootsrap 4 CDN-->
@@ -29,8 +29,8 @@
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
           <a
-             href="#"
-             class="list-group-item list-group-item-action py-2 ripple active"
+             href="/api/v1/admin/adminDashboard"
+             class="list-group-item list-group-item-action py-2 ripple"
              aria-current="true"
              >
             <i class="fas fa-tachometer-alt fa-fw me-3"></i
@@ -45,7 +45,7 @@
           
           <a
              href="/api/v1/admin/viewUsers"
-             class="list-group-item list-group-item-action py-2 ripple"
+             class="list-group-item list-group-item-action py-2 ripple active"
              ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
             >
 
@@ -120,42 +120,67 @@
   </header>
  
  
-      <section>
-        <div class="row dashboard">
-            <div class="col-xl-4 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 ><%=totalUsers%></h3>
-                        <p class="mb-0">Total users</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="far fa-user  fa-3x" style="color: rgb(240, 98, 122);"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 ><%=totalProducts%></h3>
-                        <p class="mb-0">Total products</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-dolly  fa-3x" style="color: rgb(252, 252, 62);"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <!--Section: Sales Performance KPIs-->
+    <section class="mb-4">
+      <div class="card">
+        <div class="card-header text-center py-3">
+          <h5 class="mb-0 text-center">
+            <strong>USERS</strong>
+          </h5>
         </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover text-nowrap userTable">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Profile</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Country</th>
+                  <th scope="col">State</th>
+                  <th scope="col">City</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i<users.length; i++) { %>
+                  <tr>
+                    <th scope="row"></th>
+                      <td>
+                        <img class="rounded-circle" style="width: 120px; height: 120px;" src="http://localhost:8010/uploads/<%=users[i].profilePhoto%>" alt="profile image" />
+                      </td>
+                         
+                          <td>
+                              <%= users[i].name%>
+                          </td>
+                          <td>
+                              <%= users[i].email%>
+                              </td>
+                              <td>
+                                  <%= users[i].gender%>
+                              </td>
+                              <td>
+                                  <%= users[i].country%>
+                              </td>
+                              <td>
+                                  <%= users[i].city%>
+                                  </td>
+                  <td>
+                    <%= users[i].state%></td>
+                  
+            
+          
+                  </tr>
+                  <% } %>
+                  </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Section: Sales Performance KPIs-->
     
-      </section>
-  
 
   <!-- Main layout -->
   </body>

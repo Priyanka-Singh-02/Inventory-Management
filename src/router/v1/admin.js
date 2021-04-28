@@ -13,6 +13,8 @@ router.get("/deleteProduct/:slug", ProductController.deleteProduct);
 router.get("/updateProduct/:slug", ProductController.updateProduct);
 router.post("/updatedProduct/:slug", ProductController.updatedProduct);
 
-router.get("/adminDashboard/:page", AdminController.adminDashboard);
+router.get("/adminDashboard", AdminController.adminDashboard);
+
+router.get("/viewUsers",AdminController.viewUsers);
 
 module.exports = router;
