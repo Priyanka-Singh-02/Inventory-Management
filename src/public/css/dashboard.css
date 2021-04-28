@@ -59,5 +59,23 @@ body {
       height: 200px;
       width: 70%;
       margin-left: 25%;
-      margin-top: 5%;
+      
+  }
+
+  .searchUser
+  {
+      margin-top: 7%;
+      width: 20%;
+      margin-left: 26%;
+    margin-bottom: -2%;
+    }
+  
+  td{
+      font-family: cursive;
+
+  }
+
+  thead
+  {
+      background-color: rgb(248, 117, 139);
   }

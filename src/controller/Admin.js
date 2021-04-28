@@ -124,6 +124,23 @@ const viewUsers = async  (req, res) => {
 
 
 
+
+const viewProducts = async  (req, res) => {
+  try {
+    // const userdata = await userModel.find({});
+    // const productdata = await productModel.find({}).count();
+    res.render("viewProducts.ejs");
+    //  users: userdata,
+    //  totalProducts:productdata
+   
+  } catch (error) {
+    res.render("adminError.ejs");
+    console.log("unexpected error occured");
+    console.log(error);
+  }
+};
+
+
 const addProduct = async (req, res) => {
   try {
     res.render("addProduct.ejs", {
@@ -135,4 +152,4 @@ const addProduct = async (req, res) => {
     console.log(error);
   }
 };
-module.exports = { homePage, login, adminDashboard, addProduct,viewUsers };
+module.exports = { homePage, login, adminDashboard, addProduct,viewUsers,viewProducts};

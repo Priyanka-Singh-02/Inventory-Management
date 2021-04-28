@@ -40,7 +40,7 @@
           <a
              href="#"
              class="list-group-item list-group-item-action py-2 ripple"
-             ><i class="fas fa-lock fa-fw me-3"></i><span>Password</span></a
+             ><i class="fas fa-lock fa-fw me-3"></i><span>Change password</span></a
             >
           
           <a
@@ -119,19 +119,22 @@
     <!-- Navbar -->
   </header>
  
- 
+  <div class="input-group searchUser">
+    <input type="text" class="form-control" placeholder="Search user">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="submit" >
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
     <!--Section: Sales Performance KPIs-->
-    <section class="mb-4">
-      <div class="card">
-        <div class="card-header text-center py-3">
-          <h5 class="mb-0 text-center">
-            <strong>USERS</strong>
-          </h5>
-        </div>
+    <section class="mt-5">
+      
+        
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-hover text-nowrap userTable">
-              <thead class="thead-dark">
+              <thead >
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Profile</th>
@@ -148,7 +151,7 @@
                   <tr>
                     <th scope="row"></th>
                       <td>
-                        <img class="rounded-circle" style="width: 120px; height: 120px;" src="http://localhost:8010/uploads/<%=users[i].profilePhoto%>" alt="profile image" />
+                        <img class="rounded-circle" style="width: 50px; height: 50px;" src="http://localhost:8010/uploads/<%=users[i].profilePhoto%>" alt="profile image" />
                       </td>
                          
                           <td>
