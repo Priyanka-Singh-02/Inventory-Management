@@ -15,7 +15,10 @@ router.post("/updatedProduct/:slug", ProductController.updatedProduct);
 
 router.get("/adminDashboard", AdminController.adminDashboard);
 
-router.get("/viewUsers",AdminController.viewUsers);
+router.get("/viewUsers/:page",AdminController.viewUsers);
 router.post("/filtered",AdminController.searchUser);
+
+router.get("/viewProducts/:page",AdminController.viewProducts);
+router.post("/filteredProd",AdminController.searchProduct)
 
 module.exports = router;

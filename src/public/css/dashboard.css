@@ -70,6 +70,14 @@ body {
     margin-bottom: -2%;
     }
   
+.searchProduct
+{
+  margin-top: 7%;
+      width: 20%;
+      margin-left: 25%;
+    margin-bottom: -2%;
+}
+
   td{
       font-family: cursive;
 
@@ -79,3 +87,42 @@ body {
   {
       background-color: rgb(248, 117, 139);
   }
+
+  .pagination li
+  {
+    font-weight: bold;
+    border:2px solid rgb(27, 24, 27);
+    width: 40px;
+    margin: 3px;
+  }
+
+  .flashMessage{
+    margin-left: -65%;
+    color:rgb(10, 9, 9);
+    padding: 5px;
+    
+    font-size: medium;
+
+    
+  }
+
+  .products
+  {
+   
+    margin-left: 30%;
+  
+  }
+
+
+.products p
+{
+  
+  font-family: cursive; 
+  color: black; 
+  background-color: rgb(218, 246, 247);
+}
+
+.products .mycard
+{
+  margin-right: 5%;
+}

@@ -1,0 +1,211 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>show products ||</title>
+   
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<!--Custom styles-->
+	<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+</head>
+<body>
+<!--Main Navigation-->
+<header>
+    <!-- Sidebar -->
+    <nav
+         id="sidebarMenu"
+         class="collapse d-lg-block sidebar collapse bg-white"
+         >
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+          <a
+             href="/api/v1/admin/adminDashboard"
+             class="list-group-item list-group-item-action py-2 ripple"
+             aria-current="true"
+             >
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i
+              ><span>Main dashboard</span>
+          </a>
+         
+          <a
+             href="#"
+             class="list-group-item list-group-item-action py-2 ripple"
+             ><i class="fas fa-lock fa-fw me-3"></i><span>Change password</span></a
+            >
+          
+          <a
+             href="/api/v1/admin/viewUsers/1"
+             class="list-group-item list-group-item-action py-2 ripple "
+             ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+            >
+            <a
+            href="/api/v1/admin/viewUsers/1"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-check-circle"></i><span>Manage users</span></a
+           >
+
+            <a
+             href="/api/v1/admin/viewProducts/1"
+             class="list-group-item list-group-item-action py-2 ripple active"
+             ><i class="fas fa-dolly fa-fw me-3"></i><span>Products</span></a
+            >
+            <a
+            href="/api/v1/admin/viewProducts/1"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-check-circle"></i><span>Manage Products</span></a
+           >
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+  
+    <!-- Navbar -->
+    <nav
+         id="main-navbar"
+         class="navbar navbar-expand-lg navbar-light  fixed-top"
+            style="background-color: lavender;"
+         >
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#sidebarMenu"
+                aria-controls="sidebarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+          <i class="fas fa-bars"></i>
+        </button>
+  
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+          <img
+               src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+               height="25"
+               alt=" brand"
+               loading="lazy"
+               />
+        </a>
+     
+  
+         
+          <li class="nav-item dropdown">
+           <!-- Priyanka -->
+           
+          
+      
+              <img
+                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE7UoTpSnoFDhqXKr2cKJXa99BQmrbXPc8Og&usqp=CAU"
+                   class="rounded-circle avatar"
+                   height="22"
+                   alt=" Avatar"
+                   loading="lazy"
+                   />Priyanka
+                 
+           
+         
+          </li>
+    
+      </div>
+      
+        <a href="/api/v1/admin/login"><i class="fas fa-sign-out-alt" aria-hidden="true" ></i></a>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  
+ 
+  <form method="POST" action="http://localhost:8010/api/v1/admin/filteredProd">
+    <div class="input-group searchProduct">
+      <input type="text" class="form-control" placeholder="Search products" name="search">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit"  >
+          <i class="fa fa-search"></i>
+        </button> 
+      </div>
+      
+    </div>
+    <span style="color: red;font-size: medium; margin-left: 47%">product not found</span>
+    </form>
+
+    
+    <!--Section: Sales Performance KPIs-->
+  
+    <section>
+       
+        <div class="row products">
+            <% for(var i=0; i<products.length; i++) { %>
+            <div class="col-xl-4 col-sm-6 col-12 " style="margin-left:8% ;">
+        <div class="card mycard" style="width: 20rem;height: 30rem;">
+            <div class="card-header" style="font-weight: bold;font-size: large;">
+                MDB
+              </div>
+            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzDLQ-5WJpizD-lTLf1TwIFBxH8mOn12Eb2BJgN-q4R07yM7fPHIjpSgOBDjdHZepYjPc&usqp=CAU" style="height: 210px; width: 315px;" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: bold;font-family: cursive;font-size: medium;">Product Details:</h5>
+              
+              <p class="card-text"><span style="color: rgb(7, 26, 110); font-weight: bold;">Name:</span> <%= products[i].name%></p>
+              <p class="card-text"><span style="color: rgb(7, 26, 110); font-weight: bold;">Production date:</span> <%= products[i].createdAt%></p>
+
+              <p class="card-text"><span style="color: rgb(7, 26, 110);font-weight: bold;">price:</span> <%= products[i].price%>$</p>
+              <p class="card-text"><span style="color: rgb(7, 26, 110); font-weight: bold;">Quantity:</span> <%= products[i].quantity%></p>          
+          
+          </div>
+            </div></div>
+       
+          <% } %>
+          </div>
+
+          <div class="col-xl-4 col-sm-6 col-12 " style="margin-top: -250px;">
+          <div style="margin-left: 48%;">
+            <% if (pages > 0) { %>
+              <ul class=" text-center">
+                  <% if (current == 1) { %>
+                      <li class="disabled"><a>First</a></li>
+                  <% } else { %>
+                      <li><a href="/api/v1/admin/viewProducts/1">First</a></li>
+                  <% } %>
+                  <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                  <% if (i !== 1) { %>
+                      <li class="disabled"><a>...</a></li>
+                  <% } %>
+                  <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                      <% if (i == current) { %>
+                          <li class="active"><a><%= i %></a></li>
+                      <% } else { %>
+                          <li><a href="/api/v1/admin/viewProducts/<%= i %>"><%= i %></a></li>
+                      <% } %>
+                      <% if (i == Number(current) + 4 && i < pages) { %>
+                          <li class="disabled"><a>...</a></li>
+                      <% } %>
+                  <% } %>
+                  <% if (current == pages) { %>
+                      <li class="disabled"><a>Last</a></li>
+                  <% } else { %>
+                      <li><a href="/api/v1/admin/viewProducts/<%= pages %>">Last</a></li>
+                  <% } %>
+              </ul>
+          <% } %>
+          </div>
+    </div>
+
+    </section>
+   
+  <!-- Main layout -->
+  </body>
+  </html>
+
+ 
