@@ -113,6 +113,7 @@ const viewUsers = async  (req, res) => {
     // const productdata = await productModel.find({}).count();
     res.render("viewUsers.ejs", {
      users: userdata,
+     noUserFound : "",
     //  totalProducts:productdata
     });;
   } catch (error) {
@@ -152,4 +153,54 @@ const addProduct = async (req, res) => {
     console.log(error);
   }
 };
-module.exports = { homePage, login, adminDashboard, addProduct,viewUsers,viewProducts};
+
+
+const searchUser = async (req, res) => {
+  try {
+    const searchValue = req.body.search;
+    // console.log(searchValue,"searchValue");
+    if(searchValue==="")
+    {
+      res.redirect("http://localhost:8010/api/v1/admin/viewUsers")
+    }
+    else
+    {
+    const regexSearch = "^"+searchValue
+    
+    //===== doubt =====//
+    // var data = await userModel.find({name: { $regex: searchValue,$options : "i" } },{} )
+  //   var data = await userModel.find({$or: [
+  //       {name:{$regex:regexSearch,$options:"i"}},   {title:{$regex:searchValue,$options:'i'}}
+  //   ] },{} )
+  //=====***============/
+  const userdata = await userModel.find({});
+  var data = await userModel.find({name: { $regex: regexSearch,$options : "i" } } )
+    console.log(data,"data");
+    
+    if(data == "")
+    {
+      res.render("viewUsers.ejs", {
+        users: userdata,
+        noUserFound:"No such user is found"
+       //  totalProducts:productdata
+       });;
+      }
+       if(data != " ")
+        {
+        res.render("viewUsers.ejs", {
+          users: data,
+          noUserFound:""
+         //  totalProducts:productdata
+         });;
+       }
+  
+  }
+ } catch (error) {
+    res.render("adminError.ejs");
+    console.log("unexpected error occured");
+    console.log(error);
+  }
+
+};
+
+module.exports = { homePage, login, adminDashboard, addProduct,viewUsers,viewProducts,searchUser};
