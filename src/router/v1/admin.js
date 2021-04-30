@@ -9,7 +9,7 @@ router.post("/login", AdminController.login);
 router.get("/addProduct", AdminController.addProduct);
 
 router.post("/addedProduct", ProductController.addedProduct);
-router.get("/deleteProduct/:slug", ProductController.deleteProduct);
+router.get("/deleteProduct/:id", ProductController.deleteProduct);
 router.get("/updateProduct/:slug", ProductController.updateProduct);
 router.post("/updatedProduct/:slug", ProductController.updatedProduct);
 
@@ -19,6 +19,7 @@ router.get("/viewUsers/:page",AdminController.viewUsers);
 router.post("/filtered",AdminController.searchUser);
 
 router.get("/viewProducts/:page",AdminController.viewProducts);
-router.post("/filteredProd",AdminController.searchProduct)
+router.post("/filteredProd",AdminController.searchProduct);
+router.get("/manageProducts",AdminController.manageProducts);
 
 module.exports = router;

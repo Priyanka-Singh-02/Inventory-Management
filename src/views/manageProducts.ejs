@@ -1,0 +1,314 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>manage products ||</title>
+    <%- include('userHeader'); -%>
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<!--Custom styles-->
+	<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+</head>
+<style>
+    form
+    {
+      background-color: rgba(192, 225, 255, 0.151);
+      height : 800px;
+      width: 550px;
+      border-radius: 4px;
+      border: 5px solid rgb(252, 127, 127);
+      margin-left: 467px;
+    }
+ 
+    .table-responsive {
+     max-height:440px;
+
+ }
+ 
+ .col-lg-4
+ {
+   background-color: rgba(230, 230, 230, 0.534);
+  
+ }
+ 
+ .btn
+ {
+   margin-left: 0%;
+   margin-top: 0%;
+ }
+
+
+ .offset-lg-2
+ {
+     margin-left:40%;
+     height:450px;
+     margin-top: 15%;
+ }
+  </style>
+  
+  
+<body>
+<!--Main Navigation-->
+<header>
+    <!-- Sidebar -->
+    <nav
+         id="sidebarMenu"
+         class="collapse d-lg-block sidebar collapse bg-white"
+         >
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+            <a
+            href="/api/v1/admin/adminDashboard"
+            class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true"
+            >
+           <i class="fas fa-tachometer-alt fa-fw me-3"></i
+             ><span>Main dashboard</span>
+         </a>
+          <!-- <a
+             href="#"
+             class="list-group-item list-group-item-action py-2 ripple"
+             ><i class="fas fa-lock fa-fw me-3"></i><span>Change password</span></a
+            > -->
+          
+          <a
+             href="/api/v1/admin/viewUsers/1"
+             class="list-group-item list-group-item-action py-2 ripple"
+             ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+            >
+            <a
+            href="/api/v1/admin/viewUsers/1"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-check-circle"></i><span>Manage users</span></a
+           >
+
+            <a
+             href="/api/v1/admin/viewProducts/1"
+             class="list-group-item list-group-item-action py-2 ripple"
+             ><i class="fas fa-dolly fa-fw me-3"></i><span>Products</span></a
+            >
+            <a
+            href="/api/v1/admin/manageProducts"
+            class="list-group-item list-group-item-action py-2 ripple active"
+            ><i class="fas fa-check-circle"></i><span>Manage Products</span></a
+           >
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+  
+    <!-- Navbar -->
+    <nav
+         id="main-navbar"
+         class="navbar navbar-expand-lg navbar-light  fixed-top"
+            style="background-color: lavender;"
+         >
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#sidebarMenu"
+                aria-controls="sidebarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+          <i class="fas fa-bars"></i>
+        </button>
+  
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+          <img
+               src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+               height="25"
+               alt=""
+               loading="lazy"
+               />
+        </a>
+
+      
+          <!-- Avatar -->
+          <li class="nav-item dropdown">
+           <!-- Priyanka -->
+           
+          
+         
+              <img
+                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE7UoTpSnoFDhqXKr2cKJXa99BQmrbXPc8Og&usqp=CAU"
+                   class="rounded-circle avatar"
+                   height="22"
+                   alt=""
+                   loading="lazy"
+                   />Priyanka
+                 
+            </a>
+         
+          </li>
+       
+        </ul>
+      </div>
+      
+        <a href="/api/v1/admin/login"><i class="fas fa-sign-out-alt" aria-hidden="true" ></i></a>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+ 
+ <section>
+
+ 
+       
+       
+        
+          <div class="global-container">
+            <div class="card login-form">
+              <div class="card-body">
+                <h3 class="card-title text-center">Add product</h3>
+                <div class="row">
+                <div class="card-text ">
+                  <form
+                    method="post"
+                    action="http://localhost:8010/api/v1/admin/addedProduct"
+                  >
+
+                    <h3 class="text-center" style="color: rgb(45, 77, 255);">ADD PRODUCT:</h3>
+                    <span style="color: red; font-size: large"> <%=mandatory%> </span>
+                    <div class="form-group" >
+                      <label for="exampleInputEmail1">Product Name:</label
+                      ><span style="color: red; font-size: smaller">*</span>
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        name="name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Price:</label
+                      ><span style="color: red; font-size: smaller">*</span>
+      
+                      <input
+                        type="number"
+                        class="form-control form-control-sm"
+                        id="exampleInputPassword1"
+                        name="price"
+                      />
+                    </div>
+      
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Quantity:</label
+                      ><span style="color: red; font-size: smaller">*</span>
+      
+                      <input
+                        type="number"
+                        class="form-control form-control-sm"
+                        id="exampleInputPassword1"
+                        name="quantity"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="current-date"
+                        >Created at:<span style="color: red" id="tentdate"
+                          >*</span
+                        ></label
+                      ><br />
+                      <input type="text" id="date" name="createdAt" /> <br />
+                    </div>
+      
+                    <br><br><br><br><br><br><br><br>
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1"
+                        >Product Images:(you can choose multiple)</label
+                      >
+                      <input
+                        type="file"
+                        class="form-control-file"
+                        id="productImg"
+                        name="productImages"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-left: 41%; width: 120px;font-weight: bold;">ADD</button>
+                  </form>
+                </div>
+      
+                <div class="card offset-lg-2 col-lg-4 ">
+               
+                    <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+               
+                    <table class="table table-hover">
+                    <h4 class="text-center" style="color: rgb(255, 73, 112);">UPDATE/DELTE PRODUCT:</h4>
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Product name</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(var i=0; i<products.length; i++) { %> 
+                    <tr>
+                     
+                      <td><%=products[i].name%></td>
+                      <td><button type="submit" class="btn btn-danger" >update</button></td>
+                      <td><button type="submit" class="btn btn-primary"  onclick="window.location='/api/v1/admin/deleteProduct/<%=products[i].id%>'">delete</button></td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+ 
+      
+ </section>
+  
+  
+
+  <!-- Main layout -->
+  </body>
+  </html>
+
+  <script>
+    $("#date").datepicker().datepicker("option", "defaultDate", "null");
+    $("#date").datepicker().datepicker("option", "showOn", "button");
+    $("#date").datepicker().datepicker("option", "buttonImageOnly", "true");
+    $("#date")
+    
+      .datepicker(
+        "option",
+        "buttonImage",
+        "http://localhost:8010/uploads/datepicker.png"
+      );
+  
+    $("#date").datepicker("option", "dateFormat", "DD, d MM, yy");
+    $("#date").datepicker("option", "changeMonth", true);
+    $("#date").datepicker("option", "changeYear", true);
+    $("#date").datepicker("option", "minDate", new Date());
+    $("#date").datepicker("option", "maxDate");
+  
+    $(function () {
+  
+    
+  
+  $(".ui-datepicker-trigger").css("height","30px");
+  $(".ui-datepicker-trigger").css("width","30px");
+  // $('#ui-datepicker-div').css('top', '100px');
+  
+    });
+  </script>

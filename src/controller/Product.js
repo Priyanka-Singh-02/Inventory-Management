@@ -2,14 +2,16 @@ const productModel = require("../models/product");
 
 const addedProduct = async (req, res) => {
   try {
+    const productdata = await productModel.find({});
     console.log("I am inside add product data");
     // console.log(req.body);
     // console.log("this is req.body", req.body);
     const { name, price, quantity, createdAt } = req.body;
     if (name == "" || price == "" || quantity == "" || createdAt == "") {
       var required = "Please fill all fields marked as (*) mandatory";
-      res.render("addProduct.ejs", {
+      res.render("manageProducts.ejs", {
         mandatory: required,
+        products:productdata,
       });
     } else {
       var mydata = new productModel({
@@ -24,7 +26,7 @@ const addedProduct = async (req, res) => {
           console.log(err);
         } else {
           // console.log(mydata);
-          res.redirect("http://localhost:8010/api/v1/admin/adminDashboard/:1");
+          res.redirect("http://localhost:8010/api/v1/admin/manageProducts");
         }
       });
     }
@@ -38,13 +40,13 @@ const addedProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     console.log("hi i am inside delete product");
-    const product = req.params.slug;
-    //   console.log(product);
-    await productModel.findOneAndDelete({ slug: product }, function (err) {
+    const product = req.params.id;
+      // console.log(product);
+    await productModel.findOneAndDelete({ _id: product }, function (err) {
       if (err) {
         console.log(err);
       } else {
-        res.redirect("http://localhost:8010/api/v1/admin/adminDashboard/:1");
+        res.redirect("http://localhost:8010/api/v1/admin/manageProducts");
       }
     });
   } catch (error) {

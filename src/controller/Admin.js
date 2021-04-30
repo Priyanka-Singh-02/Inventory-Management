@@ -167,6 +167,7 @@ const viewProducts = async (req, res) => {
       products:productdata,
       current: page,
       pages:Math.ceil(count / perPage),
+      noProductFound:"",
     });
   }})});
 }
@@ -263,7 +264,7 @@ const searchProduct = async (req, res) => {
       if (data == "") {
         res.render("viewProducts.ejs", {
           products: data,
-          noUserFound: "No such product is found",
+          noProductFound: "No such product is found",
           pages:0,
           current:0,
           //  totalProducts:productdata
@@ -272,9 +273,10 @@ const searchProduct = async (req, res) => {
       if (data != " ") {
         res.render("viewProducts.ejs", {
           products: data,
-          noUserFound: "",
+         
           pages:1,
           current:1,
+          noProductFound:"",
           //  totalProducts:productdata
         });
       }
@@ -286,7 +288,19 @@ const searchProduct = async (req, res) => {
   }
 }; 
 
-
+const manageProducts = async(req,res) => {
+try {
+  const productdata = await productModel.find({});
+  res.render("manageProducts.ejs", {
+    mandatory: "",
+    products:productdata,
+  });
+} catch (error) {
+  res.render("adminError.ejs");
+  console.log("unexpected error occured");
+  console.log(error);
+}
+};
 
 module.exports = {
   homePage,
@@ -297,5 +311,6 @@ module.exports = {
   viewProducts,
   searchUser,
   viewProducts,
-  searchProduct
+  searchProduct,
+  manageProducts
 };
